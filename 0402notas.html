@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Título da página</title>
+</head>
+
+<body>
+  <button onclick="exibirMenu()">Clicar aqui</button>
+  <div id="resultado"></div>
+  <script>
+    function exibirMenu() {
+      var escolha = prompt("Escolha na lista o que você quer que se faça:\n\n1 - Digite A para calcular 4 notas e a média\n2 - Digite B para saber qual é o maior número\n3 - Digite C para verificar se um número é par ou ímpar\n4 - Digite D para exibir os números de 100 até 1 em ordem decrescente\n5 - Digite E para exibir a tabuada de um número");
+      switch (escolha) {
+        case "A":
+          verificarNotas();
+          break;
+        case "B":
+          maiorNumero();
+          break;
+        case "C":
+          parOuImpar();
+          break;
+        case "D":
+          decrescenteCem();
+          break;
+        case "E":
+          exibirTabuada();
+          break;
+        default:
+          alert("Opção inválida!");
+      }
+    }
+
+    function verificarNotas() {
+      var nomeAluno = prompt("Digite o nome do aluno:");
+      var nota1 = parseFloat(prompt("Digite a primeira nota:"));
+      var nota2 = parseFloat(prompt("Digite a segunda nota:"));
+      var nota3 = parseFloat(prompt("Digite a terceira nota:"));
+      var nota4 = parseFloat(prompt("Digite a quarta nota:"));
+
+      var media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+      var resultado = "Nome do aluno: " + nomeAluno + "<br>";
+
+      if (media > 9) {
+        resultado += "Parabéns!! Excelente";
+      } else if (media >= 7) {
+        resultado += "Muito bom! Aprovado";
+      } else if (media >= 5 && media < 7) {
+        resultado += "Aprovado";
+      } else {
+        resultado += "Reprovado";
+      }
+
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function maiorNumero() {
+      var numero, maior, cont = 0;
+      while (cont < 5) {
+        numero = parseFloat(prompt("Digite o " + (cont + 1) + "° número:"));
+        if (!maior || numero > maior) {
+          maior = numero;
+        }
+        cont++;
+      }
+      document.getElementById("resultado").innerHTML = "O maior valor é " + (maior ? maior : "Nenhum número foi digitado");
+    }
+
+    function parOuImpar() {
+      var contador = 1;
+      var pares = 0;
+      var impares = 0;
+      while (contador <= 2) {
+        var numero = parseInt(prompt("Digite o " + contador + "° número:"));
+        contador++;
+        if (numero % 2 === 0) {
+          pares++;
+        } else {
+          impares++;
+        }
+      }
+      var resultado = "Quantidade de números pares: " + pares + "<br>";
+      resultado += "Quantidade de números ímpares: " + impares;
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function decrescenteCem() {
+      var numero = 100;
+      var resultado = "";
+      while (numero >= 1) {
+        resultado += numero + " ";
+        numero--;
+      }
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+
+    function exibirTabuada() {
+      var numero = parseInt(prompt('Digite um número para gerar a tabuada (entre 1 e 10):'));
+      var resultado = "";
+      if (numero >= 1 && numero <= 10) {
+        for (var i = 1; i <= 10; i++) {
+          resultado += numero + " x " + i + " = " + (numero * i) + "<br>";
+        }
+      } else {
+        resultado = "Número inválido. Digite um número entre 1 e 10.";
+      }
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+  </script>
+</body>
+
+</html>
